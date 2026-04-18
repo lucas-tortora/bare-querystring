@@ -1,36 +1,42 @@
-const escape = (exports.escape = function escape(str) {
-  return encodeURIComponent(str)
-})
+function escape(input) {
+  return encodeURIComponent(input)
+}
 
-const unescape = (exports.unescape = function unescape(str) {
-  return decodeURIComponent(str)
-})
+exports.escape = escape
 
-exports.parse = function parse(str, sep = '&', eq = '=') {
-  const obj = Object.create(null)
+function unescape(input) {
+  return decodeURIComponent(input)
+}
 
-  for (const tmp of str.split(sep)) {
-    if (tmp === '') continue
+exports.unescape = unescape
 
-    let [key, value] = tmp.split(eq)
+exports.parse = function parse(input, separator = '&', delimiter = '=') {
+  const params = Object.create(null)
+
+  for (let sequence of input.split(separator)) {
+    if (sequence === '') continue
+
+    sequence = sequence.replace(/\+/g, ' ')
+
+    let [key, value] = sequence.split(delimiter)
 
     key = unescape(key)
     value = unescape(value || '')
 
-    obj[key] = key in obj ? [].concat(obj[key], value) : value
+    params[key] = key in params ? [].concat(params[key], value) : value
   }
 
-  return obj
+  return params
 }
 
-exports.stringify = function stringify(obj, sep = '&', eq = '=') {
-  return Object.entries(obj)
+exports.stringify = function stringify(params, separator = '&', delimiter = '=') {
+  return Object.entries(params)
     .map(([key, value]) =>
       (Array.isArray(value) ? value : [value])
-        .map((value) => escape(key) + eq + escape(value))
-        .join(sep)
+        .map((value) => escape(key) + delimiter + escape(value))
+        .join(separator)
     )
-    .join(sep)
+    .join(separator)
 }
 
 exports.decode = exports.parse

@@ -14,7 +14,9 @@
     "index.d.ts"
   ],
   "scripts": {
-    "test": "prettier . --check && bare test.js"
+    "format": "prettier --write . && lunte --fix",
+    "lint": "prettier --check . && lunte",
+    "test": "brittle-bare --coverage test.js"
   },
   "repository": {
     "type": "git",
@@ -28,6 +30,7 @@
   "homepage": "https://github.com/holepunchto/bare-querystring#readme",
   "devDependencies": {
     "brittle": "^3.7.0",
+    "lunte": "^1.6.0",
     "prettier": "^3.4.2",
     "prettier-config-holepunch": "^2.0.0"
   }
