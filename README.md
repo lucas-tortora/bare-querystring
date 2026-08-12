@@ -22,4 +22,6 @@ Apache-2.0
 
 ## API
 
-See the [full API reference](https://docs.pears.com/reference/bare/modules/bare-querystring).
+See the [`bare-querystring` reference][reference].
+
+[reference]: https://docs.pears.com/reference/bare/modules/bare-querystring
