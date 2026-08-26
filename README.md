@@ -18,9 +18,7 @@ querystring.encode({ name: 'ferret' }) // `name=ferret`
 
 ## API
 
-See the [`bare-querystring` reference][reference].
-
-[reference]: https://docs.pears.com/reference/bare/modules/bare-querystring
+See the [`bare-querystring` reference](https://docs.pears.com/reference/bare/modules/bare-querystring).
 
 ## License
 
